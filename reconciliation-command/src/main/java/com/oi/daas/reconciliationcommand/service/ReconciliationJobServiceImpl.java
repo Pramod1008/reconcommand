@@ -99,4 +99,27 @@ public class ReconciliationJobServiceImpl implements ReconciliationJobServiceCom
         log.info(result.getBody());
     }
 
+    public void updateReconciliationDetailsById(String jobId)
+    {
+        ReconciliationJob reconciliationJob = new ReconciliationJob();
+
+        ObjectMapper mapper = new ObjectMapper();
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/reconciliationJob.json");
+
+        try {
+            reconciliationJob = mapper.readValue(inputStream, ReconciliationJob.class);
+            log.info("Job present with id: " + reconciliationJob.getJobId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> entity = new HttpEntity<>(reconciliationJob,headers);
+
+        final String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH + "/" + jobId;
+        log.info(URL);
+        ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.PUT, entity, String.class);
+        log.info(result.getBody());
+    }
 }

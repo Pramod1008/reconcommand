@@ -3,7 +3,7 @@
   "jobMeta": {
     "reconType": "single-file",
     "controlFileDetails": {
-      "feedName": "string",
+      "feedName": "single",
       "feedType": "string",
       "schema": [
         "string"

@@ -39,9 +39,17 @@ public class ReconciliationLoader implements CommandLineRunner {
                 log.info("recon " + getOrSet[0]);
                 deleteReconciliationDetailsById(getOrSet[1]);
                 break;
+            case "updatejob":
+                log.info("recon " + getOrSet[0]);
+                updateReconciliationDetailsById(getOrSet[1]);
+                break;
             default:
                 break;
         }
+    }
+
+    private void updateReconciliationDetailsById(String jobId) {
+        reconciliationJobServiceCom.updateReconciliationDetailsById(jobId);
     }
 
     private void deleteReconciliationDetailsById(String jobid) {

@@ -9,4 +9,6 @@ public interface ReconciliationJobServiceCom {
     void createReconciliationJobConfig();
 
     void deleteReconciliationDetailsById(String jobId);
+
+    void updateReconciliationDetailsById(String jobId);
 }
