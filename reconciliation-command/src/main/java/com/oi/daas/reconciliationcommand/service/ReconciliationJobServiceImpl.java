@@ -14,8 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 @Slf4j
 @Component
@@ -37,25 +36,26 @@ public class ReconciliationJobServiceImpl implements ReconciliationJobServiceCom
         log.info("Calling getAllReconciliationJobDetails");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity <String> entity = new HttpEntity<String>(headers);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH;
+        final String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH;
         log.info(URL);
-
-        //String result = restTemplate.getForObject(URL, String.class);
-        ResponseEntity<String>  result = restTemplate.exchange(URL,HttpMethod.GET,entity,String.class);
-        log.info(result.getBody().toString());
+        ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.GET, entity, String.class);
+        log.info(result.getBody());
     }
 
     public void getReconciliationDetailsById(String jobId) {
         log.info("Calling getReconciliationDetailsById");
 
-        String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH + "/" + jobId;
-        log.info(URL);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        String result = restTemplate.getForObject(URL, String.class);
-        log.info(result);
+        final String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH + "/" + jobId;
+        log.info(URL);
+        ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.GET, entity, String.class);
+        log.info(result.getBody());
 
     }
 
@@ -76,9 +76,9 @@ public class ReconciliationJobServiceImpl implements ReconciliationJobServiceCom
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<?> entity = new HttpEntity<Object>(reconciliationJob, httpHeaders);
+        HttpEntity<?> entity = new HttpEntity<>(reconciliationJob, httpHeaders);
 
-        String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH;
+        final String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH;
         log.info(URL);
 
         ResponseEntity<ReconciliationJob> responseEntity = restTemplate.exchange(URL, HttpMethod.POST, entity, ReconciliationJob.class);
@@ -87,15 +87,16 @@ public class ReconciliationJobServiceImpl implements ReconciliationJobServiceCom
 
     @Override
     public void deleteReconciliationDetailsById(String jobId) {
-
         log.info("Calling deleteReconciliationDetailsById");
 
-        String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH + "/" + jobId;
-        log.info(URL);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        String result = restTemplate.getForObject(URL, String.class);
-        /*restTemplate.
-        log.info(result);
-*/
+        final String URL = appProperties.getDataReconciliationHost() + CONTEXT_PATH + GET_JOB_PATH + "/" + jobId;
+        log.info(URL);
+        ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.DELETE, entity, String.class);
+        log.info(result.getBody());
     }
+
 }
