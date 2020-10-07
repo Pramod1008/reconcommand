@@ -1,0 +1,109 @@
+{
+  "jobId": "dcs_recon_gprssgwe",
+  "jobMeta": {
+    "reconType": "single-file",
+    "controlFileDetails": {
+      "feedName": "string",
+      "feedType": "string",
+      "schema": [
+        "string"
+      ],
+      "dbName": "string",
+      "fileDetails": {
+        "fileNamePattern": [
+          "string"
+        ],
+        "locationType": "string",
+        "failurePath": "string",
+        "feedName": "string",
+        "filePath": "string",
+        "delimiter": "string",
+        "trailerSchema": [
+          "string"
+        ],
+        "headerSchema": [
+          "string"
+        ],
+        "dateFormat": "string"
+      },
+      "tableName": "string",
+      "partitionDetails": [
+        {
+          "partitionFormat": "yyyyMMdd",
+          "partitionKey": "load_date",
+          "partitionType": "date",
+          "partitionValue": "file_name=customer_voice_data.txt"
+        }
+      ]
+    },
+    "dataFeedDetails": {
+      "feedName": "string",
+      "feedType": "string",
+      "schema": [
+        "string"
+      ],
+      "dbName": "string",
+      "fileDetails": {
+        "fileNamePattern": [
+          "string"
+        ],
+        "locationType": "string",
+        "failurePath": "string",
+        "feedName": "string",
+        "filePath": "string",
+        "delimiter": "string",
+        "trailerSchema": [
+          "string"
+        ],
+        "headerSchema": [
+          "string"
+        ],
+        "dateFormat": "string"
+      },
+      "tableName": "string",
+      "partitionDetails": [
+        {
+          "partitionFormat": "yyyyMMdd",
+          "partitionKey": "load_date",
+          "partitionType": "date",
+          "partitionValue": "file_name=customer_voice_data.txt"
+        }
+      ]
+    },
+    "interval": "1h",
+    "reconciliationDetails": {
+      "failurePath": "target/failure-files",
+      "fileSeqCheck": {
+        "startSeq": 1,
+        "startSeqFile": "string",
+        "endSeq": 3,
+        "seqRegex": [
+          "string"
+        ],
+        "increment": 0,
+        "numberOfFiles": 0
+      },
+      "operations": [
+        {
+          "operationType": "count|min|max|avg|sum",
+          "headerColumn": "count",
+          "dataColumn": "string",
+          "countOfControlRecords": 0
+        }
+      ]
+    },
+    "sparkProperties": {
+      "sparkArgs": {
+        "additionalProp1": "string",
+        "additionalProp2": "string",
+        "additionalProp3": "string"
+      },
+      "sparkConf": {
+        "additionalProp1": "string",
+        "additionalProp2": "string",
+        "additionalProp3": "string"
+      }
+    },
+    "threshold": 0
+  }
+}
